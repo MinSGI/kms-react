@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfront=self.webpackChunkfront||[]).push([[739],{739:(e,r,s)=>{s.r(r),s.d(r,{default:()=>t});s(791);var n=s(184);const t=()=>(0,n.jsx)("div",{children:"Sub Area"})}}]);
+//# sourceMappingURL=739.ad0ea797.chunk.js.map
