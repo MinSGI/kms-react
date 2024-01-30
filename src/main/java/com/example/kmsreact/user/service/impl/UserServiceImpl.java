@@ -23,6 +23,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void userSave(UserEntity userEntity) {
+        System.out.println("@@@ : " + userEntity.getEmail());
+        if(userEntity.getUserId() != null){
+            userEntity.setRegId(userEntity.getUserId());
+        } else {
+            userEntity.setRegId(userEntity.getName());
+        }
         ur.saveAndFlush(userEntity);
     }
 

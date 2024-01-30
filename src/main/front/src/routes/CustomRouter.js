@@ -1,35 +1,29 @@
-import React from 'react';
-import {BrowserRouter, Routes, Route} from "react-router-dom";
-import Header from "../layout/Header";
-import SideMenu from "../layout/SideMenu";
-import Main from "../pages/Main";
-import Sub from "../pages/Sub";
-import About from "../pages/About";
-import NotFound from "../pages/NotFound";
-import User from "../pages/user/User";
-import Reg from "../pages/user/Reg";
-import Upt from "../pages/user/Upt";
+import { lazy } from "react";
+import { Navigate } from "react-router-dom";
 
-const CustomRouter = () => {
-    return (
-        <div>
-            <BrowserRouter>
-                <Header />
-                <SideMenu />
-                    <Routes>
-                        <Route path="*" element={<NotFound />}></Route>
-                        <Route path="/" element={<Main />}></Route>
-                        <Route path="/sub" element={<Sub />}></Route>
-                        <Route path="/about" element={<About />}></Route>
-                        <Route path="/user" element={<User />}>
+/****Layouts*****/
+const Main = lazy(() => import("../pages/Main.js"));
 
-                            <Route path="/user/upt" element={<Upt />}></Route>
-                        </Route>
-                        <Route path="/user/reg" element={<Reg />}></Route>
-                    </Routes>
-            </BrowserRouter>
-        </div>
-    );
-};
+/***** Pages ****/
+
+const About = lazy(() => import("../pages/About.js"));
+const User = lazy(() => import("../pages/user/User"));
+const Board = lazy(() => import("../pages/board/Board"));
+const News = lazy(() => import("../pages/news/News"));
+
+/*****Routes******/
+
+const CustomRouter = [
+    {
+        path: "/",
+        element: <Main />,
+        children: [
+            { path: "/board", exact: true, element: <Board /> },
+            { path: "/user", exact: true, element: <User /> },
+            { path: "/news", exact: true, element: <News /> },
+            { path: "/about", exact: true, element: <About /> },
+        ],
+    },
+];
 
 export default CustomRouter;

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfront=self.webpackChunkfront||[]).push([[773],{773:(e,r,s)=>{s.r(r),s.d(r,{default:()=>n});s(791);var a=s(184);const n=()=>(0,a.jsx)("div",{children:"Board Area"})}}]);
+//# sourceMappingURL=773.98d98863.chunk.js.map

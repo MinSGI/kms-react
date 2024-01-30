@@ -73,7 +73,7 @@ const Reg = () => {
 
         axios({
             method:'post',
-            url: '/api/test2',
+            url: '/api/user/save',
             data: param,
         }).then((res) => {
             console.log(res.data);

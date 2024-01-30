@@ -1,12 +1,10 @@
-import React from 'react';
+import { useRoutes } from "react-router-dom";
 import CustomRouter from "./routes/CustomRouter";
 
 const App = () => {
-    return (
-        <div className="App">
-            <CustomRouter />
-        </div>
-    );
+    const routing = useRoutes(CustomRouter);
+
+    return <div className="dark">{routing}</div>;
 };
 
 export default App;
