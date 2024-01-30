@@ -5,8 +5,6 @@ import Header from "../layout/Header";
 const Main = () => {
     return (
         <div>
-            <Header />
-            <SideMenu/>
             Main Area
         </div>
     );
