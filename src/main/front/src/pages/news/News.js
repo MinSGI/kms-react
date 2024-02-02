@@ -1,14 +1,12 @@
-import React from 'react';
-import Sort from "./component/Sort";
-import List from "./component/List";
-import Search from "./component/Search";
+import React, {useEffect, useState} from 'react';
+import NaverNews from "./component/NaverNews";
+import NewsAPI from "./component/News";
 
 const News = () => {
     return (
         <div>
-            <Search />
-            <Sort />
-            <List />
+            <NewsAPI />
+            <NaverNews />
         </div>
     );
 };
