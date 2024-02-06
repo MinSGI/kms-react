@@ -12,19 +12,40 @@ Blog.propTypes = {
 const News = () => {
     const [newsList, setNewsList] = useState('');
 
+    const [country, setCountry] = useState('kr');
+    const [category, setCategory] = useState(null);
+    const [sources, setSources] = useState(null);
+    const [q, setQ] = useState('');
+    const [pageSize, setPageSize] = useState(null);
+    const [page, setPage] = useState(null);
+
     useEffect(() => {
-        async function fetchData() {
-            const res = await newsAPI();
-            setNewsList(res);
+        searchHandle();
+    }, [country, category, sources, pageSize, page]);
+
+    const searchHandle = async () => {
+        const getNewsList = await newsAPI(country, category, sources, q, pageSize, page);
+        setNewsList(getNewsList);
+    };
+
+    const keyDownHandler = (event) => {
+        if (event.key === 'Enter') {
+            searchHandle();
         }
-        fetchData();
-    }, []);
+    }
 
     return (
         <div>
             <h1>OPEN API 뉴스</h1>
             <Row>
                 <h5 className="mb-3 mt-3">OPEN API 뉴스</h5>
+                <input
+                    type="text"
+                    placeholder="검색어 입력"
+                    value={q}
+                    onChange={(e) => setQ(e.target.value)}
+                    onKeyDown={keyDownHandler}
+                />
                 {newsList && newsList.map((item, idx) => (
                     <Col sm="6" lg="6" xl="3" key={idx}>
                         <Blog
