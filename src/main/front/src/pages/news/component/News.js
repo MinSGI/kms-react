@@ -19,14 +19,13 @@ const News = () => {
     const [pageSize, setPageSize] = useState(null);
     const [page, setPage] = useState(null);
 
+    const searchHandle = () => newsAPI(country, category, sources, q, pageSize, page);
+
     useEffect(() => {
         searchHandle();
     }, [country, category, sources, pageSize, page]);
 
-    const searchHandle = async () => {
-        const getNewsList = await newsAPI(country, category, sources, q, pageSize, page);
-        setNewsList(getNewsList);
-    };
+
 
     const keyDownHandler = (event) => {
         if (event.key === 'Enter') {
