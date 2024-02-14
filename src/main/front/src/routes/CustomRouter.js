@@ -1,5 +1,5 @@
-import { lazy } from "react";
-import { Navigate } from "react-router-dom";
+import React, { lazy } from "react";
+import {Route, Routes} from "react-router-dom";
 
 /****Layouts*****/
 const Main = lazy(() => import("../pages/Main.js"));
@@ -11,19 +11,42 @@ const User = lazy(() => import("../pages/user/User"));
 const Board = lazy(() => import("../pages/board/Board"));
 const News = lazy(() => import("../pages/news/News"));
 
+const Wrapper = lazy(() => import("../pages/Wrapper"));
+
+const NotFound = lazy(() => import("../pages/NotFound"));
+
 /*****Routes******/
 
+// const CustomRouter = [
+//     {
+//         path: "/sss",
+//         exact:true,
+//         element: <Main />,
+//         children: [
+//             { path: "*", element: <NotFound /> },
+//             { path: "board", element: <Board/> },
+//             { path: "user",  element: <User /> },
+//             { path: "news", element: <News /> },
+//             { path: "about", element: <About /> },
+//         ],
+//     },
+// ];
+
+// const CustomRouter = () => {
+//     return (
+//         <Routes>
+//             <Route path="/" element={<Main />}></Route>
+//             <Route path="/board" element={<Board />}></Route>
+//             <Route path="/news" element={<News />}></Route>
+//         </Routes>
+//     )
+// }
+
 const CustomRouter = [
-    {
-        path: "/",
-        element: <Main />,
-        children: [
-            { path: "/board", exact: true, element: <Board /> },
-            { path: "/user", exact: true, element: <User /> },
-            { path: "/news", exact: true, element: <News /> },
-            { path: "/about", exact: true, element: <About /> },
-        ],
-    },
-];
+    { path:"*", element: <NotFound /> },
+    { path:"/", element: <Main /> },
+    { path:"/board", element: <Board /> },
+    { path:"/news", element: <News /> },
+]
 
 export default CustomRouter;

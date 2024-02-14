@@ -1,35 +1,32 @@
-import React, {useEffect, useState} from 'react';
-import newsAPI from "./NewsAPI";
-import {Col, Row} from "reactstrap";
-import * as PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import NewsAPI from "./NewsAPI";
+import { Col, Row } from "reactstrap";
 import Blog from "./Blog";
 
-Blog.propTypes = {
-    image: PropTypes.any,
-    color: PropTypes.string,
-    title: PropTypes.any
-};
 const News = () => {
-    const [newsList, setNewsList] = useState('');
-
     const [country, setCountry] = useState('kr');
     const [category, setCategory] = useState(null);
     const [sources, setSources] = useState(null);
     const [q, setQ] = useState('');
     const [pageSize, setPageSize] = useState(null);
     const [page, setPage] = useState(null);
-
-    const searchHandle = () => newsAPI(country, category, sources, q, pageSize, page);
+    const [newsList, setNewsList] = useState([]);
 
     useEffect(() => {
-        searchHandle();
+        const fetchData = async () => {
+            const data = await NewsAPI({ country, category, sources, q, pageSize, page });
+            setNewsList(data);
+        };
+        fetchData();
     }, [country, category, sources, pageSize, page]);
-
-
 
     const keyDownHandler = (event) => {
         if (event.key === 'Enter') {
-            searchHandle();
+            const fetchData = async () => {
+                const data = await NewsAPI({ country, category, sources, q, pageSize, page });
+                setNewsList(data);
+            };
+            fetchData();
         }
     }
 
@@ -51,7 +48,7 @@ const News = () => {
                             image={item.urlToImage}
                             title={item.author ? item.author : item.source.name}
                             subtitle={item.title}
-                            text={item.description}
+                            //text={item.description}
                             color='primary'
                             link={item.url}
                         />
