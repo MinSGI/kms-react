@@ -10,43 +10,42 @@ const About = lazy(() => import("../pages/About.js"));
 const User = lazy(() => import("../pages/user/User"));
 const Board = lazy(() => import("../pages/board/Board"));
 const News = lazy(() => import("../pages/news/News"));
-
-const Wrapper = lazy(() => import("../pages/Wrapper"));
+const NewsPage1 = lazy(() => import("../pages/news/NewsPage1"));
+const NewsPage2 = lazy(() => import("../pages/news/NewsPage2"));
 
 const NotFound = lazy(() => import("../pages/NotFound"));
 
 /*****Routes******/
 
-// const CustomRouter = [
-//     {
-//         path: "/sss",
-//         exact:true,
-//         element: <Main />,
-//         children: [
-//             { path: "*", element: <NotFound /> },
-//             { path: "board", element: <Board/> },
-//             { path: "user",  element: <User /> },
-//             { path: "news", element: <News /> },
-//             { path: "about", element: <About /> },
-//         ],
-//     },
-// ];
-
-// const CustomRouter = () => {
-//     return (
-//         <Routes>
-//             <Route path="/" element={<Main />}></Route>
-//             <Route path="/board" element={<Board />}></Route>
-//             <Route path="/news" element={<News />}></Route>
-//         </Routes>
-//     )
-// }
-
 const CustomRouter = [
-    { path:"*", element: <NotFound /> },
-    { path:"/", element: <Main /> },
-    { path:"/board", element: <Board /> },
-    { path:"/news", element: <News /> },
-]
+    {
+        path: "/",
+        exact:true,
+        element: <Main />,
+        children: [
+            { path: "*", element: <NotFound /> },
+            { path: "board", element: <Board/> },
+            { path: "user",  element: <User /> },
+            {
+                path: "news",
+                exact: true,
+                element: <News />,
+                children: [
+                    {path: "page1", element: <NewsPage1 />},
+                    {path: "page2", element: <NewsPage2 />},
+                ]
+            },
+            { path: "about", element: <About /> },
+            { path: "page1", element: <NewsPage1 /> },
+        ],
+    },
+];
+
+// const CustomRouter = [
+//     { path:"*", element: <NotFound /> },
+//     { path:"/", element: <Main /> },
+//     { path:"/board", element: <Board /> },
+//     { path:"/news", element: <News /> },
+// ]
 
 export default CustomRouter;

@@ -13,9 +13,7 @@ const NewsAPI = async ({ country, category, sources, q, pageSize, page }) => {
             pageSize: pageSize ? pageSize : 'null',
             page: page ? page : 'null'
         };
-        const response = await AxiosCustom(apiUrl, 'get', params);
-        console.log('Data:', response.data);
-        return response.data.articles;
+        return await AxiosCustom(apiUrl, 'get', params);
     } catch (error) {
         console.error('Error:', error);
         return null;

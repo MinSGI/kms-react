@@ -1,12 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import NaverNews from "./component/NaverNews";
-import NewsAPI from "./component/News";
+import {Link, Outlet} from "react-router-dom";
 
 const News = () => {
     return (
         <div>
-            <NewsAPI />
-            <NaverNews />
+            <Link to="/news/page1">
+                <button className="btn btn btn-outline-primary">openAPI News</button>
+            </Link>
+            <Link to="/news/page2">
+                <button className="btn btn btn-outline-success">Naver News</button>
+            </Link>
+            <Outlet/>
         </div>
     );
 };
