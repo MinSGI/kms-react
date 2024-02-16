@@ -1,7 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import {Link, Outlet} from "react-router-dom";
+import {Link, Outlet, useLocation, useNavigate} from "react-router-dom";
 
 const News = () => {
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (location.pathname === '/news') {
+            navigate('/news/page1');
+        }
+    }, [location]);
     return (
         <div>
             <Link to="/news/page1">

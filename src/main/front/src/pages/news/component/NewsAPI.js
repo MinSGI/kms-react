@@ -3,7 +3,7 @@ import AxiosCustom from "../../../utils/AxiosCustom";
 const NewsAPI = async ({ country, category, sources, q, pageSize, page }) => {
     try {
         const apiKey = '5c30efa1dd134641baf0b37092e35245';
-        const apiUrl = 'https://newsapi.org/v2/top-headlines';
+        const apiUrl = '/v2/top-headlines';
         const params = {
             apiKey: apiKey,
             country: country,

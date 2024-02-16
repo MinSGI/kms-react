@@ -3,6 +3,7 @@ import NewsAPI from "./NewsAPI";
 import { Col, Row } from "reactstrap";
 import Blog from "./Blog";
 import ReactPaginate from "react-paginate";
+import "./News.css";
 
 const News = () => {
     const [country, setCountry] = useState('kr');
@@ -21,8 +22,10 @@ const News = () => {
     useEffect(() => {
         const fetchData = async () => {
             const data = await NewsAPI({ country, category, sources, q, pageSize, page });
-            setNewsList(data.data.articles);
-            setTotalResults(data.data.totalResults);
+            if( data ) {
+                setNewsList(data.data.articles);
+                setTotalResults(data.data.totalResults);
+            }
         };
         fetchData();
     }, [country, category, sources, pageSize, page]);

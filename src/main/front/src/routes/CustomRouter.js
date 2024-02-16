@@ -10,8 +10,8 @@ const About = lazy(() => import("../pages/About.js"));
 const User = lazy(() => import("../pages/user/User"));
 const Board = lazy(() => import("../pages/board/Board"));
 const News = lazy(() => import("../pages/news/News"));
-const NewsPage1 = lazy(() => import("../pages/news/NewsPage1"));
-const NewsPage2 = lazy(() => import("../pages/news/NewsPage2"));
+const NewsPage1 = lazy(() => import("../pages/news/component/News"));
+const NewsPage2 = lazy(() => import("../pages/news/component/NaverNews"));
 
 const NotFound = lazy(() => import("../pages/NotFound"));
 
@@ -29,6 +29,7 @@ const CustomRouter = [
             {
                 path: "news",
                 exact: true,
+                index: <NewsPage1 />,
                 element: <News />,
                 children: [
                     {path: "page1", element: <NewsPage1 />},

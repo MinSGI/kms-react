@@ -6,21 +6,19 @@ import ReactPaginate from 'react-paginate';
 import DOMPurify from 'dompurify';
 
 const NaverNews = () => {
-    const [itemsPerPage, setItemsPerPage] = useState(4); // 페이지당 아이템 수
     const [currentPage, setCurrentPage] = useState(0);
 
     const [keyword, setKeyword] = useState('a');
     const [sort, setSort] = useState('sim');
     const [newsList, setNewsList] = useState('');
-    const [display, setDisplay] = useState('10');
     const searchHandle = async () => {
-        const getNewsList = await NaverNewsAPI(keyword, sort, display);
+        const getNewsList = await NaverNewsAPI(keyword, sort, 10, currentPage);
         setNewsList(getNewsList);
     };
 
     useEffect(() => {
         searchHandle();
-    }, [sort, display, itemsPerPage]);
+    }, [sort, currentPage]);
 
     const keyDownHandler = (event) => {
         if (event.key === 'Enter') {
@@ -32,12 +30,7 @@ const NaverNews = () => {
         setCurrentPage(selectedPage.selected);
     };
 
-    useEffect(() => {
-        console.log('paging click');
-    }, [currentPage]);
-
-    const slicedNewsList = newsList ? newsList.slice(currentPage * itemsPerPage, (currentPage + 1) * itemsPerPage) : null;
-
+    const slicedNewsList = newsList ? newsList.slice(currentPage * 10, (currentPage + 1) * 10) : null;
 
     return (
         <div>
@@ -51,31 +44,9 @@ const NaverNews = () => {
             />
             <button onClick={searchHandle}>검색</button>
             <label>
-                정렬:
                 <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                    <option value="date">날짜순</option>
                     <option value="sim">관련도순</option>
-                </select>
-            </label>
-            <label>
-                리턴 결과 수:
-                <select value={display} onChange={(e) => setDisplay(e.target.value)}>
-                    <option value="10">10</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
-                    <option value="40">40</option>
-                    <option value="50">50</option>
-                </select>
-            </label>
-            <label>
-                페이지 수:
-                <select value={itemsPerPage} onChange={(e) => setItemsPerPage((e.target.value) * 1)}>
-                    <option value="5">5</option>
-                    <option value="4">4</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
-                    <option value="30">30</option>
+                    <option value="date">날짜순</option>
                 </select>
             </label>
             <Row>
@@ -98,8 +69,8 @@ const NaverNews = () => {
                 previousLabel={'<'}
                 nextLabel={'>'}
                 breakLabel={'...'}
-                pageCount={Math.ceil(newsList.length / itemsPerPage)}
-                marginPagesDisplayed={2}
+                pageCount={Math.ceil(newsList && newsList.length / 10 )}
+                marginPagesDisplayed={100}
                 pageRangeDisplayed={10}
                 onPageChange={handlePageClick}
                 containerClassName={'pagination'}

@@ -1,5 +1,7 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
+const cors = require('cors');
+
 module.exports = function(app) {
   app.use(
     '/api',
@@ -17,4 +19,21 @@ module.exports = function (app) {
             changeOrigin: true,
         }),
     );
+};
+
+module.exports = function (app) {
+    app.use(
+        createProxyMiddleware('/v2', {
+            target: 'https://newsapi.org',
+            changeOrigin: true,
+        }),
+    );
+};
+
+module.exports = function (app) {
+  app.use(
+      cors({
+          exposedHeaders: ['WWW-Authenticate', 'Etag'],
+      }),
+  );
 };
