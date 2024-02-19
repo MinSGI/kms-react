@@ -10,7 +10,6 @@ const News = () => {
     const [category, setCategory] = useState(null);
     const [sources, setSources] = useState(null);
     const [q, setQ] = useState('');
-    const [pageSize, setPageSize] = useState(10);
     const [page, setPage] = useState(null);
     const [newsList, setNewsList] = useState([]);
     const [totalResults, setTotalResults] = useState(null);
@@ -21,19 +20,19 @@ const News = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await NewsAPI({ country, category, sources, q, pageSize, page });
+            const data = await NewsAPI({ country, category, sources, q, pageSize:10, page });
             if( data ) {
                 setNewsList(data.data.articles);
                 setTotalResults(data.data.totalResults);
             }
         };
         fetchData();
-    }, [country, category, sources, pageSize, page]);
+    }, [country, category, sources, page]);
 
     const keyDownHandler = (event) => {
         if (event.key === 'Enter') {
             const fetchData = async () => {
-                const data = await NewsAPI({ country, category, sources, q, pageSize, page });
+                const data = await NewsAPI({ country, category, sources, q, pageSize:10, page });
                 setNewsList(data);
             };
             fetchData();
@@ -54,7 +53,7 @@ const News = () => {
                     </div>
                     <div className="col-3">
                         <select className="form-select" onChange={(e) => setCategory(e.target.value)}>
-                            <option>category</option>
+                            <option value="">category</option>
                             <option value="business">business</option>
                             <option value="entertainment">entertainment</option>
                             <option value="health">health</option>

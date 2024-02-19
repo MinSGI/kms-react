@@ -4,16 +4,22 @@ import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 import ReactPaginate from 'react-paginate';
 import DOMPurify from 'dompurify';
+import "./News.css";
 
 const NaverNews = () => {
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(1);
 
     const [keyword, setKeyword] = useState('a');
     const [sort, setSort] = useState('sim');
     const [newsList, setNewsList] = useState('');
+
+    const [totalCount, setTotalCount] = useState(0);
     const searchHandle = async () => {
         const getNewsList = await NaverNewsAPI(keyword, sort, 10, currentPage);
-        setNewsList(getNewsList);
+        if(getNewsList) {
+            setNewsList(getNewsList.items);
+            setTotalCount(getNewsList.total > 10000 ? 10000 : getNewsList.total);
+        }
     };
 
     useEffect(() => {
@@ -27,10 +33,8 @@ const NaverNews = () => {
     }
 
     const handlePageClick = (selectedPage) => {
-        setCurrentPage(selectedPage.selected);
+        setCurrentPage(selectedPage.selected+1);
     };
-
-    const slicedNewsList = newsList ? newsList.slice(currentPage * 10, (currentPage + 1) * 10) : null;
 
     return (
         <div>
@@ -51,7 +55,7 @@ const NaverNews = () => {
             </label>
             <Row>
                 <h5 className="mb-3 mt-3">네이버 뉴스</h5>
-                {slicedNewsList && slicedNewsList.map((item, idx) => (
+                {newsList && newsList.map((item, idx) => (
                     <Col md="6" lg="4" key={idx}>
                         <Card body className="text-center">
                             <CardTitle tag="h5"
@@ -69,8 +73,8 @@ const NaverNews = () => {
                 previousLabel={'<'}
                 nextLabel={'>'}
                 breakLabel={'...'}
-                pageCount={Math.ceil(newsList && newsList.length / 10 )}
-                marginPagesDisplayed={100}
+                pageCount={Math.ceil(totalCount && totalCount / 10 )}
+                marginPagesDisplayed={5}
                 pageRangeDisplayed={10}
                 onPageChange={handlePageClick}
                 containerClassName={'pagination'}

@@ -1,39 +1,30 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 
-const cors = require('cors');
-
 module.exports = function(app) {
-  app.use(
-    '/api',
-    createProxyMiddleware({
-      target: 'http://localhost:8080',	// 서버 URL or localhost:설정한포트번호
-      changeOrigin: true,
-    })
-  );
-};
-
-module.exports = function (app) {
+    // '/api'로 시작하는 요청은 'http://localhost:8080'으로 프록시됩니다.
     app.use(
-        createProxyMiddleware('/v1/search', {
+        '/api',
+        createProxyMiddleware({
+            target: 'http://localhost:8080',
+            changeOrigin: true,
+        })
+    );
+
+    // '/v1'로 시작하는 요청은 'https://openapi.naver.com'으로 프록시됩니다.
+    app.use(
+        '/v1',
+        createProxyMiddleware({
             target: 'https://openapi.naver.com',
             changeOrigin: true,
-        }),
+        })
     );
-};
 
-module.exports = function (app) {
+    // '/v2'로 시작하는 요청은 'https://newsapi.org/v2'로 프록시됩니다.
     app.use(
-        createProxyMiddleware('/v2', {
+        '/v2',
+        createProxyMiddleware({
             target: 'https://newsapi.org',
             changeOrigin: true,
-        }),
+        })
     );
-};
-
-module.exports = function (app) {
-  app.use(
-      cors({
-          exposedHeaders: ['WWW-Authenticate', 'Etag'],
-      }),
-  );
 };
