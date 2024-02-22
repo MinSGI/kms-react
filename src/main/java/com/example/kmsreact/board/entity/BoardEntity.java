@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 public class BoardEntity implements Serializable {
+    @Serial
     private static final long serialVersionUID = 1L;
 
     @Id
