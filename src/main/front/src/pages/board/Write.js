@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css'; // Quill의 스타일시트
 import './QuillEditor.css';
-import {Button, Input, Label} from "reactstrap";
+import {Button, Input} from "reactstrap";
 import axios from "axios";
 
 const Write = () => {
@@ -11,12 +11,10 @@ const Write = () => {
     const saveContent = () => {
         axios.post("/api/board/save", { title:title, contents:content })
             .then(res => {
-                console.log("Save successful:", res);
-                // 저장 성공 후에 필요한 작업 수행
+                window.location.href="/board";
             })
             .catch(error => {
                 console.error("Save error:", error);
-                // 저장 실패 시에 필요한 작업 수행
             });
     };
 

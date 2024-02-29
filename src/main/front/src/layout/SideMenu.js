@@ -18,6 +18,11 @@ const navigation = [
         icon: "bi bi-people",
     },
     {
+        title: "Map",
+        href: "/map",
+        icon: "bi bi-textarea-resize",
+    },
+    {
         title: "About",
         href: "/about",
         icon: "bi bi-people",

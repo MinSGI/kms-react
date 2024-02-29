@@ -1,0 +1,43 @@
+.my-location-button {
+    width: 30px; /* 버튼 너비 */
+    height: 30px; /* 버튼 높이 */
+    background-color: #ffffff; /* 버튼 배경색 (하얀색) */
+    border: 2px solid #3498db; /* 테두리 (연한 파란색) */
+    border-radius: 50%; /* 버튼을 원으로 만듦 */
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 10px; /* 왼쪽 여백 추가 */
+    transition: background-color 0.3s, border-color 0.3s, color 0.3s; /* 배경색, 테두리 색상 및 십자가 색상 변경 트랜지션 */
+    color: #3498db; /* 십자가 색상 (연한 파란색) */
+}
+
+.my-location-button:hover {
+    background-color: #3498db; /* 마우스 호버 시 배경색 변경 (연한 파란색) */
+    border-color: #ffffff; /* 마우스 호버 시 테두리 색상 변경 (하얀색) */
+    color: #ffffff; /* 호버 시 십자가 색상 변경 (하얀색) */
+}
+
+.my-location-button::before,
+.my-location-button::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 12px;
+    background-color: #3498db; /* 십자가 색상 (연한 파란색) */
+    transition: background-color 0.3s; /* 십자가 색상 변경 트랜지션 */
+}
+
+.my-location-button::before {
+    transform: rotate(90deg);
+}
+
+.my-location-button::after {
+    /* 십자가의 스타일은 변경할 필요가 없습니다. */
+}
+
+.my-location-button:hover::before,
+.my-location-button:hover::after {
+    background-color: #ffffff; /* 마우스 호버 시 십자가 색상 변경 (하얀색) */
+}
