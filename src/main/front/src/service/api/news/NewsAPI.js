@@ -2,9 +2,8 @@ import axios from "axios";
 
 const NewsAPI = async ({ country, category, sources, q, pageSize, page }) => {
     const apiUrl = '/v2/top-headlines';
-    const apiKey = '5c30efa1dd134641baf0b37092e35245';
     const params = {
-        apiKey: apiKey,
+        apiKey: process.env.REACT_APP_NEWS_API_KEY,
         country: country,
         category: category,
         sources: sources,

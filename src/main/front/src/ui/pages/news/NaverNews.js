@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import NaverNewsAPI from './NaverNewsAPI'
+import NaverNewsAPI from 'service/api/naver/NaverNewsAPI'
 import {Button, Card, CardText, CardTitle, Col, Row} from "reactstrap";
 import {Link} from "react-router-dom";
 import ReactPaginate from 'react-paginate';
 import DOMPurify from 'dompurify';
-import "./News.css";
+import "assets/css/News.css";
 
 const NaverNews = () => {
     const [currentPage, setCurrentPage] = useState(1);

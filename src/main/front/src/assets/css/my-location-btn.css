@@ -10,6 +10,8 @@
     cursor:pointer;
 }
 
-.infoWindowDiv {
-    width: 150px;
+.info-window-div {
+    width: 250px;
+    padding: 10px;
+    font-size: 14px;
 }

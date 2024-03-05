@@ -2,11 +2,9 @@ import axios from 'axios';
 
 const NaverNewsAPI = async (query, sort, display, start) => {
     const apiUrl = '/v1/search/news.json';
-    const apiKey = 'PwA3g7rg7brtYe29mPQr';
-    const secretApiKey = 'MkU0LOXXvm';
     const header = {
-        'X-Naver-Client-Id': apiKey,
-        'X-Naver-Client-Secret': secretApiKey,
+        'X-Naver-Client-Id': process.env.REACT_APP_NAVER_NEWS_CLIENT_ID,
+        'X-Naver-Client-Secret': process.env.REACT_APP_NAVER_NEWS_SECRET_KEY,
     }
     const params = {
         query: query,

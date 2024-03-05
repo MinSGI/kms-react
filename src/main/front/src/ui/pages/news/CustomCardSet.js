@@ -9,7 +9,7 @@ import {
 } from "reactstrap";
 import {Link} from "react-router-dom";
 
-const Blog = (props) => {
+const CustomCardSet = (props) => {
     return (
         <Card>
             <CardImg alt="Card image cap" src={props.image} />
@@ -23,4 +23,4 @@ const Blog = (props) => {
     );
 };
 
-export default Blog;
+export default CustomCardSet;

@@ -1,5 +1,5 @@
-import RegionCode from "./RegionCode";
-import ChargeInfo from "./ChargeInfo";
+import RegionCodeAPI from "service/api/kepco/RegionCodeAPI";
+import EvChargeInfoAPI from "service/api/kepco/EvChargeInfoAPI";
 import addressToCoordinate from "./AddressToCoordinate";
 
 const CoordinateToAddress = async (nv, lt, lg) => {
@@ -17,8 +17,8 @@ const CoordinateToAddress = async (nv, lt, lg) => {
                 if (items && items.length > 0) {
                     metroNm = items[0].region.area1.name;
                     cityNm = items[0].region.area2.name;
-                    const addressCode = await RegionCode(metroNm, cityNm);
-                    const chargeInfoResponse = await ChargeInfo(addressCode.uppoCd, addressCode.code)
+                    const addressCode = await RegionCodeAPI(metroNm, cityNm);
+                    const chargeInfoResponse = await EvChargeInfoAPI(addressCode.uppoCd, addressCode.code)
                     const data = chargeInfoResponse.data;
                     if (data && data.length > 0) {
                         for (let i = 0; i < data.length; i++) {

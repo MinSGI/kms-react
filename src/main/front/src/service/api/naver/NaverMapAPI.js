@@ -1,12 +1,11 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {useScript} from "hooks/useScript";
-import {Card, CardBody, CardTitle} from "reactstrap";
 import "assets/css/my-location-btn.css";
-import NowLocation from "./NowLocation";
-import NowPosBtn from "./NowPosBtn";
-import CoordinateToAddress from "./CoordinateToAddress";
+import NowLocation from "ui/pages/map/NowLocation";
+import NowPosBtn from "ui/pages/map/NowPosBtn";
+import CoordinateToAddress from "ui/pages/map/CoordinateToAddress";
 
-const MapAPI = () => {
+const NaverMapAPI = ({ mapId }) => {
     // 네이버 지도 JS 파일 Include
     const status = useScript(`https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=${process.env.REACT_APP_NAVER_CLIENT_ID}&submodules=geocoder`);
 
@@ -35,7 +34,15 @@ const MapAPI = () => {
                 });
 
                 let infoWindow = new nvRef.current.InfoWindow({
-                    content: '<div style="width:150px;text-align:center;padding:10px;">The Letter is <b>"'+ key + ', ' + i +'"</b>.</div>'
+                    content: `
+                        <div class="info-window-div">
+                            <h4>${cacheData[key][i].stnPlace}</h4>
+                            ${cacheData[key][i].stnAddr} <br/> 
+                            급속: <b>${cacheData[key][i].rapidCnt}</b><br/>
+                            완속: <b>${cacheData[key][i].slowCnt}</b><br/>
+                            지원차종: <b>${cacheData[key][i].carType}</b>
+                        </div>
+                    `
                 });
 
                 markers.push(marker);
@@ -71,7 +78,7 @@ const MapAPI = () => {
                 }
 
                 // 네이버 지도 선언(id = map)
-                const newMap = new nv.Map('map', mapOption);
+                const newMap = new nv.Map(mapId, mapOption);
 
                 // 현재 내 위치 버튼
                 nv.Event.once(newMap, 'init', function () {
@@ -147,19 +154,6 @@ const MapAPI = () => {
             }
         }
     }
-
-    return (
-        <Card>
-            <CardTitle tag="h6" className="border-bottom p-3 mb-0">
-                충전소 위치
-            </CardTitle>
-            <CardBody className="">
-                    <div className='map' id='map' style={{width:"100%", minHeight:"500px"}}>
-                    </div>
-            </CardBody>
-        </Card>
-
-    );
 };
 
-export default MapAPI;
+export default NaverMapAPI;
