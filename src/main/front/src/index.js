@@ -5,7 +5,7 @@ import "./assets/scss/style.scss";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from "react-router-dom";
-import Loader from "./layout/loader/Loader";
+import Loader from "./ui/layout/loader/Loader";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

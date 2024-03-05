@@ -2,25 +2,25 @@ import React, { lazy } from "react";
 import {Route, Routes} from "react-router-dom";
 
 /****Layouts*****/
-const Main = lazy(() => import("../pages/Main.js"));
+const Main = lazy(() => import("../../ui/pages/Main.js"));
 
 /***** Pages ****/
 
-const About = lazy(() => import("../pages/About.js"));
-const User = lazy(() => import("../pages/user/User"));
+const About = lazy(() => import("../../ui/pages/About.js"));
+const User = lazy(() => import("../../ui/pages/user/User"));
 
-const Board = lazy(() => import("../pages/board/Board"));
-const BoardList = lazy(() => import("../pages/board/List"));
-const BoardWrite = lazy(() => import("../pages/board/Write"));
-const BoardDetail = lazy(() => import("../pages/board/Detail"));
+const Board = lazy(() => import("../../ui/pages/board/Board"));
+const BoardList = lazy(() => import("../../ui/pages/board/List"));
+const BoardWrite = lazy(() => import("../../ui/pages/board/Write"));
+const BoardDetail = lazy(() => import("../../ui/pages/board/Detail"));
 
-const Map = lazy(() => import("../pages/map/Map"));
+const Map = lazy(() => import("../../ui/pages/map/Map"));
 
-const News = lazy(() => import("../pages/news/News"));
-const NewsPage1 = lazy(() => import("../pages/news/component/News"));
-const NewsPage2 = lazy(() => import("../pages/news/component/NaverNews"));
+const News = lazy(() => import("../../ui/pages/news/News"));
+const NewsPage1 = lazy(() => import("../../ui/pages/news/component/News"));
+const NewsPage2 = lazy(() => import("../../ui/pages/news/component/NaverNews"));
 
-const NotFound = lazy(() => import("../pages/NotFound"));
+const NotFound = lazy(() => import("../../ui/pages/NotFound"));
 
 /*****Routes******/
 const CustomRouter = () => {

@@ -1,0 +1,15 @@
+.my-location-button {
+    background-image: url("../images/nowLocationBtn.png");
+    border:1px solid black;
+    margin-left:10px;
+    width: 30px;
+    height: 30px;
+    display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor:pointer;
+}
+
+.infoWindowDiv {
+    width: 150px;
+}
